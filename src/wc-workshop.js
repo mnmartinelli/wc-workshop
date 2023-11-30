@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-
+import "./nasa-image.js";
 export class WcWorkshop extends LitElement {
   static get properties() {
     return {
@@ -27,11 +27,24 @@ export class WcWorkshop extends LitElement {
         transition-delay: .5s;
         transition: .5s all ease-in-out;
       }
+      .image{
+        display: inline-block;
+      }
+      .image div {
+        max-width: 200px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .image img {
+        display: block;
+        height: 200px;
+        width: 200px;
+      }
 
       details {
         margin: 16px;
         padding: 16px;
-        background-color: white;
+        background-color: lavender
       }
       summary {
         font-size: 24px;
@@ -64,9 +77,12 @@ export class WcWorkshop extends LitElement {
     </details>
     <div class="results">
       ${this.items.map((item, index) => html`
-        <div>
-          ${item.data[0].title}
-        </div>
+      <nasa-image
+      source="${item.links[0].href}"
+      title="${item.data[0].title}"
+      >
+
+      </nasa-image>
       `)}
     </div>
     `;
